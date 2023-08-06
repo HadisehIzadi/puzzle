@@ -9,6 +9,16 @@ public class Board : MonoBehaviour
 	public GameObject bgTilePrefab;
 	public Gem[] gems;
 	public Gem[,] allGems;
+	public float gemSpeed;
+	public MtchFinder matchFind;
+	
+	
+	private void Awake()
+    {
+        matchFind = FindObjectOfType<MtchFinder>();
+
+    }
+	
 	
 	// Start is called before the first frame update
 	void Start()
@@ -21,7 +31,7 @@ public class Board : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-        
+        matchFind.FindAllMatches();
 	}
     
 	private void Setup()
@@ -35,6 +45,12 @@ public class Board : MonoBehaviour
 				bgTile.name = "BG Tile - " + x + ", " + y;
 				int gemToUse = Random.Range(0, gems.Length);
 				
+				int iterations = 0;
+                    while (MatchesAt(new Vector2Int(x, y), gems[gemToUse]) && iterations < 100)
+                    {
+                        gemToUse = Random.Range(0, gems.Length);
+                        iterations++;
+                    }
 				SpawnGem(new Vector2Int(x, y), gems[gemToUse]);
 				
 			}
@@ -53,5 +69,26 @@ public class Board : MonoBehaviour
         
         gem.SetupGem(pos, this);
 	}
+	
+	bool MatchesAt(Vector2Int posToCheck, Gem gemToCheck)
+    {
+        if(posToCheck.x > 1)
+        {
+            if(allGems[posToCheck.x - 1, posToCheck.y].type == gemToCheck.type && allGems[posToCheck.x - 2, posToCheck.y].type == gemToCheck.type)
+            {
+                return true;
+            }
+        }
+
+        if (posToCheck.y > 1)
+        {
+            if (allGems[posToCheck.x, posToCheck.y - 1].type == gemToCheck.type && allGems[posToCheck.x, posToCheck.y - 2].type == gemToCheck.type)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
     
 }
