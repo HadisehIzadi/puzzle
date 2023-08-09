@@ -176,7 +176,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 9
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -290,8 +290,9 @@ MonoBehaviour:
   - {fileID: 8148114953445968269, guid: 5f60d238c4fe6c14480f385b26b49595, type: 3}
   - {fileID: 8103770950810156541, guid: 943f1d460a1104a4db49c502ed6c2dfd, type: 3}
   - {fileID: 1654440208467929420, guid: 4f601449146089c4e96c77bf97525ba4, type: 3}
-  gemSpeed: 12
+  gemSpeed: 10
   matchFind: {fileID: 0}
+  currentState: 1
 --- !u!4 &781228105
 Transform:
   m_ObjectHideFlags: 0
