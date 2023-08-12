@@ -25,6 +25,8 @@ public class Gem : MonoBehaviour
 	public enum GemType { blue, green, red, yellow, purple, bomb, stone}
     public GemType type;
     
+    public GameObject destroyEffect;
+    
     
 	// Start is called before the first frame update
 	void Start()
